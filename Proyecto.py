@@ -1,1 +1,1 @@
-#Este va a ser nuestro archivo para la creación del proyecto
+#Este va a ser nuestro archivo para el proyecto
