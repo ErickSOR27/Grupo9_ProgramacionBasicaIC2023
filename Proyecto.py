@@ -74,6 +74,84 @@ while True:
         registrarUsuario()
     
 
+# Submenú
+# opcion = ""
+    while opcion != "7":
+        print("Submenú:")
+        print("1. Retirar dinero")
+        print("2. Depositar dinero")
+        print("3. Ver saldo actual")
+        print("4. Pagar servicios")
+        print("5. Compra/Venta de Divisas")
+        print("6. Eliminar usuario")
+        print("7. Salir")
+        opcion = input("Ingrese el número de opción deseada: ")
+
+    if opcion == "1":
+                                # Retirar dinero
+                                cuenta = input("¿De qué cuenta desea retirar dinero? (1. Colones, 2. Dólares, 3. Bitcoin): ")
+                                monto = float(input("Ingrese el monto que desea retirar: "))
+                                # Verificación de saldo suficiente
+                                # ...
+
+    elif opcion == "2":
+                                # Depositar dinero
+                                cuenta = input("¿A qué cuenta desea acreditar el depósito de dinero? (1. Colones, 2. Dólares, 3. Bitcoin): ")
+                                monto = float(input("Ingrese el monto que desea depositar: "))
+                                # Advertencia para monto negativo
+                                # ...
+
+    elif opcion == "3":
+                                # Ver saldo actual
+                                # ...
+                                
+                                 
+    elif opcion == "4":
+                                # Pagar servicios
+     servicio = input("Seleccione el servicio que desea pagar: ")
+                                # Verificación de servicio activo
+                                # ...
+                                # Mostrar saldo a pagar
+                                # ...
+                                # Seleccionar cuenta de pago
+                                # ...
+                                # Verificación de saldo suficiente
+                                # ...
+                                # Conversión de divisas automática, si aplica
+                                # ...
+
+    elif opcion == "5":
+                                # Compra/Venta de Divisas
+                                # ...
+
+    elif opcion == "6":
+                                # Eliminar usuario
+                                # ...
+                                # 
+                                # 
+    elif opcion == "7":
+                                # Salir
+                                print("Saliendo del sistema. Gracias por utilizar nuestros servicios.")
+                                # Actualización de saldos en archivos de texto
+                                # ...
+
+else:
+     print("Opción inválida. Intente nuevamente.")
+    else:
+print("El PIN ingresado es incorrecto.")
+pin = getpass.getpass("Ingrese su PIN nuevamente: ")
+intentos_pin += 1
+if intentos_pin > 3:
+                            print("Se excedió el máximo de intentos para ingresar su PIN. Volviendo al menú principal.")
+                            
+    break
+else:
+        
+print("El número de cédula ingresado no se encuentra aun Registrado.")
+cedula = input("Ingrese su número de cédula nuevamente: ")
+intentos_cedula += 1
+if intentos_cedula > 3:
+                print("Se excedió el máximo de intentos para ingresar su cédula. Volviendo al menú principal.")
 
 
 
