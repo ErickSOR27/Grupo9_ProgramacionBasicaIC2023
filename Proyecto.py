@@ -108,7 +108,7 @@ while True:
                                  
     elif opcion == "4":
                                 # Pagar servicios
-     servicio = input("Seleccione el servicio que desea pagar: ")
+         servicio = input("Seleccione el servicio que desea pagar: ")
                                 # Verificación de servicio activo
                                 # ...
                                 # Mostrar saldo a pagar
@@ -144,7 +144,7 @@ intentos_pin += 1
 if intentos_pin > 3:
                             print("Se excedió el máximo de intentos para ingresar su PIN. Volviendo al menú principal.")
                             
-    break
+    break 
 else:
         
 print("El número de cédula ingresado no se encuentra aun Registrado.")
