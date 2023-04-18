@@ -139,4 +139,19 @@ while True:
                                 # Actualización de saldos en archivos de texto
                                 # ..
 
-    print("Se ha retirado el dinero solicitado:"dinero retirado)
+    else:    
+        
+         print("Se ha retirado el dinero solicitado.")
+         #imprimir el saldo actual
+         #Regresar al submenu
+         #Despositar el dinero
+
+         Credito= input("¿De qué cuenta desea acreditar el deposito de dinero? (4. Colones, 5. Dólares, 6. Bitcoin): ")
+         Deposito= float(input("cuanto quiere depositar: "))
+         #verificacion deposito suficiente
+         #advertencia para el deposito negativo
+        
+    print("su transaccion se hizo de forma correcta")
+    
+        
+    
