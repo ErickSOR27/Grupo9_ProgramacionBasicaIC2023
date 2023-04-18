@@ -7,7 +7,7 @@ import getpass
 usuarios = {}
 
 # Función para solicitar un número de cédula válido al usuario
-def solicitarCedula():
+def solicitarCedula() :
     intentos = 0
     while intentos < 3:
         cedula = input("Ingrese su número de cédula (9 dígitos): ")
@@ -102,8 +102,10 @@ while True:
                                 # ...
 
     elif opcion == "3":
-                                # Ver saldo actual
-                                # ...
+        pass                       
+    
+                                 # Ver saldo actual
+                                 # ...
                                 
                                  
     elif opcion == "4":
@@ -121,10 +123,12 @@ while True:
                                 # ...
 
     elif opcion == "5":
+        pass                   
                                 # Compra/Venta de Divisas
                                 # ...
-
+    
     elif opcion == "6":
+        pass                    
                                 # Eliminar usuario
                                 # ...
                                 # 
@@ -133,26 +137,6 @@ while True:
                                 # Salir
                                 print("Saliendo del sistema. Gracias por utilizar nuestros servicios.")
                                 # Actualización de saldos en archivos de texto
-                                # ...
+                                # ..
 
-else:
-     print("Opción inválida. Intente nuevamente.")
-    else:
-print("El PIN ingresado es incorrecto.")
-pin = getpass.getpass("Ingrese su PIN nuevamente: ")
-intentos_pin += 1
-if intentos_pin > 3:
-                            print("Se excedió el máximo de intentos para ingresar su PIN. Volviendo al menú principal.")
-                            
-    break 
-else:
-        
-print("El número de cédula ingresado no se encuentra aun Registrado.")
-cedula = input("Ingrese su número de cédula nuevamente: ")
-intentos_cedula += 1
-if intentos_cedula > 3:
-                print("Se excedió el máximo de intentos para ingresar su cédula. Volviendo al menú principal.")
-
-
-
-
+    print("Se ha retirado el dinero solicitado:"dinero retirado)
