@@ -1,157 +1,162 @@
-#Este va a ser nuestro archivo para la creación del proyecto
-#Funciones de las opciones del menú
-
+#ENCABEZADO
+#DEFINIR BIBLIOTECAS
+import os
 import getpass
+import random
+import json  # Investigar más 
 
-# Almacenamiento de usuarios
-usuarios = {}
+#import requests # investigar más
 
-# Función para solicitar un número de cédula válido al usuario
-def solicitarCedula() :
-    intentos = 0
-    while intentos < 3:
-        cedula = input("Ingrese su número de cédula (9 dígitos): ")
+#DEFINIR FUNCIONES
+
+
+def solicitudCedula(): # Funcion para solicitar el número de cedula al usuario para su posterior registro                                       
+    global cedula   # Global sirve para hacer global la variable y poder llamarla desde otras funciones     
+    intentos = 3       # Se establece que deben de ser 3 intentos para ingresar la cedula correcamente
+    file = open("proyecto/usuarios_pines.txt", "a") # Se abre ell archivo para crearlo y que no de errores más adelante
+    
+    while intentos > 0:  # mientras que los intentos sean mayores a 0 sigue el programa
+        cedula = input("Ingrese su número de cédula (9 dígitos):\n ") # se pide al usuario ingresar el numero de cedula especificando que deben de ser (9 digitos)
         if len(cedula) != 9:
-            print("El número de cédula debe ser de 9 dígitos.")
-        elif cedula in usuarios:
-            print("El número de cédula ya está registrado.")
-        else:
-            return cedula
-        intentos += 1
-    print("Se excedió el máximo de intentos para ingresar un número de cédula válido.")
-    return None
-
-# Función para solicitar el nombre del usuario
-def solicitarNombre():
-    nombre = input("Ingrese su nombre completo: ")
-    return nombre
-
-# Función para solicitar un PIN válido al usuario
-def solicitarPin():
-    intentos = 0
-    while intentos < 3:
-        pin = getpass.getpass("Ingrese su PIN (4 dígitos): ")
-        if len(pin) != 4:
-            print("El PIN debe ser de 4 dígitos.")
-        else:
-            pin_confirmacion = getpass.getpass("Ingrese su PIN nuevamente para confirmar: ")
-            if pin == pin_confirmacion:
-                return pin
-            else:
-                print("Los PIN no coinciden.")
-        intentos += 1
-    print("Se excedió el máximo de intentos para ingresar un PIN válido.")
-    return None
-
-# Función para registrar un nuevo usuario
-def registrarUsuario():
-    print("== Registro de nuevo usuario ==")
-    cedula = solicitarCedula()
-    if cedula:
-        nombre = solicitarNombre()
-        pin = solicitarPin()
-        if pin:
-            usuarios[cedula] = {"nombre": nombre, "pin": pin}
-            print("Usuario registrado correctamente.")
-    input("Presione Enter para volver al menú principal.")
+            print("El número de cédula debe ser de (9 dígitos)")
+            intentos -= 1 # Se resta un intento a la variable intentos
+            print("Le quedan {} intentos restantes".format(intentos))# Se imprime un mensaje con la cantidad de intentos restantes utilizando el format (USAR ESTO EN LOS DEMAS)
+            continue
+        with open("proyecto/usuarios_pines.txt", "r") as file:
+            cedulas_registradas = file.read().splitlines()
+            if cedula in cedulas_registradas:
+                print("Error: La cédula ya ha sido registrada")
+                intentos -= 1
+                print("Le quedan {} intentos restantes".format(intentos))
+                continue
+        with open("proyecto/usuarios_pines.txt", "a") as file:
+            file.write(cedula)
+            file.write("\n")
+            
+        print("Cédula registrada correctamente")
+        break
+    else:
+        print("No se pudo registrar la cédula")   
+           
 
 
+def solicitudNombre ():  #Funcion para la Solicitud del nombre del usuario y su posterior registro
+    nombre = input("Ingrese su nombre completo:\n")
+    with open("proyecto/usuarios_pines.txt","a") as archivo: # 
+                    archivo.write(nombre) 
+                    archivo.write("\n")
+                    
+                    print("Su nombre ha sido registrado correctamente")
+                 #  return nombre
 
 
-
-# Función para mostrar el menú de opciones
-def mostrar_menu():
-    print("1. Registro nuevo usuario")
-    print("2. Usuario registrado")
-    print("3. Configuración avanzada")
-    print("4. Salir")
-
-while True:
-    print("Bienvenido al cajero automático")
-    mostrar_menu()
-    opciónElegida = int(input("Digite la opción que desea realizar\n"))
-    if opciónElegida == 1:
-        registrarUsuario()
-    
-
-# Submenú
-# opcion = ""
-    while opcion != "7":
-        print("Submenú:")
-        print("1. Retirar dinero")
-        print("2. Depositar dinero")
-        print("3. Ver saldo actual")
-        print("4. Pagar servicios")
-        print("5. Compra/Venta de Divisas")
-        print("6. Eliminar usuario")
-        print("7. Salir")
-        opcion = input("Ingrese el número de opción deseada: ")
-
-    if opcion == "1":
-                                # Retirar dinero
-                                cuenta = input("¿De qué cuenta desea retirar dinero? (1. Colones, 2. Dólares, 3. Bitcoin): ")
-                                monto = float(input("Ingrese el monto que desea retirar: "))
-                                # Verificación de saldo suficiente
-                                # ...
-
-    elif opcion == "2":
-                                # Depositar dinero
-                                cuenta = input("¿A qué cuenta desea acreditar el depósito de dinero? (1. Colones, 2. Dólares, 3. Bitcoin): ")
-                                monto = float(input("Ingrese el monto que desea depositar: "))
-                                # Advertencia para monto negativo
-                                # ...
-
-    elif opcion == "3":
-        pass                       
-    
-                                 # Ver saldo actual
-                                 # ...
-                                
-                                 
-    elif opcion == "4":
-                                # Pagar servicios
-         servicio = input("Seleccione el servicio que desea pagar: ")
-                                # Verificación de servicio activo
-                                # ...
-                                # Mostrar saldo a pagar
-                                # ...
-                                # Seleccionar cuenta de pago
-                                # ...
-                                # Verificación de saldo suficiente
-                                # ...
-                                # Conversión de divisas automática, si aplica
-                                # ...
-
-    elif opcion == "5":
-        pass                   
-                                # Compra/Venta de Divisas
-                                # ...
-    
-    elif opcion == "6":
-        pass                    
-                                # Eliminar usuario
-                                # ...
-                                # 
-                                # 
-    elif opcion == "7":
-                                # Salir
-                                print("Saliendo del sistema. Gracias por utilizar nuestros servicios.")
-                                # Actualización de saldos en archivos de texto
-                                # ..
-
-    else:    
+def escogerPin ():       #Funcion de creación de pin para el ingreso del usuario con dicho pin
+    while True:
+          pin = getpass.getpass("Ingrese su PIN (4 digitos):\n") # Se utiliza funcion getpass para que el pin no sea visible en la terminal
+          if len(pin) != 4:   # con if y len se le dice al usuario que si el pin no es de 4 digitos debe intentarlo nuevamente
+           print("El pin debe ser de 4 digitos intente nuevamente")
+          else:
+               pin_confirmacion = getpass.getpass("Ingrese su PIN nuevamente para confirmar:\n") # Se crea una variable getpass para solicitar el pin nuevamente 
+               if pin == pin_confirmacion: # Si el pin es igual al primero ingresado se continua con el programa (auntentificación)
+                    with open("proyecto/usuarios_pines.txt","a") as archivo: # Whit sirve para que los archivos se cierren despues de usarse
+                     archivo.write( pin)
+                     archivo.write("\n")
+                     
+                     print("Su pin ha sido registrado correctamente:\n")
+                     return pin
+               
+               else:
+                    print("Los pin no coinciden intentelo nuevamente")
+   
+               
+ 
+def depositoObligatorio():   #Funcion para efectuar el deposito obligatorio  de 100 000 colones para poder ser registrado correctamente
+     print("A que cuenta (colones, dólares o bitcoin) desea hacer el deposito")
+     subMenuDeposito()
+     
+     opcionCuentas = int(input("A cual cuenta desea acreditar el deposito del dinero?\n"))
+   
+     if opcionCuentas == 1:
+          global deposito
+          intentos = 3
+          while intentos > 0:
+              deposito = input("Ingrese la cantidad del depósito:\n")
+              try:
+                  deposito = float(deposito)
+                  if deposito < 100000:
+                      print("Error: El depósito debe ser mayor a 100000.")
+                      intentos -= 1
+                      print(f"Intentos restantes: {intentos}") # Cambiar 
+                  else:
+                       crearCarpetas ()
+                       crearCarpetaServicios()
+                       
+                       print("Depósito ingresado correctamente.")
+                       
+                       return deposito
+              except ValueError:
+                  print("Error: Ingrese un número válido.")
+                  intentos -= 1
+                  print("Intentos restantes: {intentos}")
+          else:
+               print("No se pudo ingresar el depósito.")
+         
+         
+              
         
-         print("Se ha retirado el dinero solicitado.")
-         #imprimir el saldo actual
-         #Regresar al submenu
-         #Despositar el dinero
-
-         Credito= input("¿De qué cuenta desea acreditar el deposito de dinero? (4. Colones, 5. Dólares, 6. Bitcoin): ")
-         Deposito= float(input("cuanto quiere depositar: "))
-         #verificacion deposito suficiente
-         #advertencia para el deposito negativo
         
-    print("su transaccion se hizo de forma correcta")
+
+def crearCarpetas (): #Esta funcion crea todas las carpetas anidadas para cada usuario con sus jerarquias
+     ruta_carpeta = "C:/Users/danin/workspace/Proyecto/" + cedula + "/Servicios/"
+     ruta_carpeta = "C:/Users/danin/workspace/Proyecto/" + cedula + "/Servicios/"
+     os.makedirs(ruta_carpeta)
+     os.makedirs("C:/Users/danin/workspace/Proyecto/" + cedula + "/Saldos/")
+     
+     file = open("C:/Users/danin/workspace/Proyecto/" + cedula + "/Saldos/saldos.txt","a")
+
+     file = open("C:/Users/danin/workspace/Proyecto/" +  cedula + "/Saldos/saldos.txt","a")
+     file.write("colones")
+     file.write("\n")
+     file.write(str(deposito))
+     file.write("\n")
+     file.write("dolares")
+     file.write("\n")
+     file.write("0")
+     file.write("\n")
+     file.write("bitcoin")
+     file.write("\n")
+     file.write("0")
+     file.close()    
+
+       
+def crearCarpetaServicios():
+     archivos = ['1.txt', '2.txt', '3.txt', '4.txt', '5.txt', '6.txt', '7.txt']
+     for archivo in archivos:
+      ruta = os.path.join('C:/Users/danin/workspace/Proyecto/' +  cedula + '/Servicios/', archivo)
+      with open(ruta, 'w') as f:
+        f.write('')
+        file = open("C:/Users/danin/workspace/Proyecto/" +  cedula + "/Saldos/saldos.txt","a")
+        file.write("colones")
+
+    
+                                    
+                
+def mostrarDatos():
+    try:
+         file = open("C:/Users/danin/workspace/Proyecto/" + cedula + "/Saldos/saldos.txt","r")
+         saldos = file.read()
+         file.close()
+         print(saldos)
+    except IOError:
+        print("El archivo no existe")
+                 
+
+ #cedulaUsuario = input("Ingrese el numero de cedula:\n")
+    #elif opcionCuentas == 2:
+                                    
+     #print("Eligio dólares")
+      #elif opcionCuentas == 3:
+       #print("Eligio bitcoin")  
     
         
     
