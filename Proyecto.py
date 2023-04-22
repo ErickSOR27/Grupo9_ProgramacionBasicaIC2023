@@ -72,7 +72,7 @@ def escogerPin ():       #Funcion de creación de pin para el ingreso del usuari
  
 def depositoObligatorio():   #Funcion para efectuar el deposito obligatorio  de 100 000 colones para poder ser registrado correctamente
      print("A que cuenta (colones, dólares o bitcoin) desea hacer el deposito")
-     subMenuDeposito()
+     subMenuDeposito=0
      
      opcionCuentas = int(input("A cual cuenta desea acreditar el deposito del dinero?\n"))
    
