@@ -1,4 +1,17 @@
 #ENCABEZADO
+'''
+Problema:Crear un progrtama que sea como un cajero automatico que el usuario pueda ingresar sus datos personales como su cedula,nombre,pin además que ingrese
+un deposito minímo de 100000mil colones para poder registrarse correctamente se debe poder elegir entre  3 opciones con 3 tipos de moneda luego del deposito 
+se pueden hacer funciones como depositar dinero, retirar dinero,pagar servicios,eliminar su usuario entre otras
+Participantes:
+Erick Ochante Rojas
+Yislen Solorzano Rodriguez
+Marcelo Molina Aguilar
+Profesor:
+Alvaro Dionisio Camacho
+fecha: 18/04/2013
+
+'''
 #DEFINIR BIBLIOTECAS
 import os      #Vista en clase Manejo de archivos
 import getpass # Sirve para que el codigo no sea visible en la terminal
@@ -36,7 +49,7 @@ def solicitudCedula(): # Funcion para solicitar el número de cedula al usuario 
             continue   
         with open("proyecto/usuarios_pines.txt", "r") as file:  # Se usa para no cerrar el archivo 
             cedulasRegistradas = file.read().splitlines()   #Leer linea por linea del archivo
-            if cedula in cedulasRegistradas:
+            if cedula in cedulasRegistradas: #
                 print("Error: La cédula ya ha sido registrada")
                 intentos -= 1
                 print("Le quedan {} intentos restantes".format(intentos))
@@ -541,10 +554,10 @@ def imprimitrServiciosRamdom():
     
 
 # Recorre el árbol de directorios y agrega los archivos a la lista   EXPLICAR
-    for raiz, dirs, archivos in os.walk(carpeta_principal): #EXPLICAR
+    for raiz, dirs, archivos in os.walk(carpeta_principal): #
         for archivo in archivos: #CAMBIAR
             # Asegura que el archivo tenga la extensión .txt EXPLICAR
-            if archivo.endswith('.txt'): #EXPLICAR
+            if archivo.endswith('.txt'): # para verificar que los archivos terminen en txt
                 listaArchivos.append(os.path.join(raiz, archivo)) #EXPLICAR
 
     # Selecciona 3 archivos aleatorios de la lista
@@ -566,11 +579,12 @@ def randomAcces():
     carpeta_principal = 'C:/Users/danin/workspace/Proyecto/' +  cedula + '/Servicios'
 
 # Recorre el árbol de directorios y agrega los archivos a la lista   EXPLICAR
-    for raiz, dirs, archivos in os.walk(carpeta_principal): #EXPLICAR
+    for raiz, dirs, archivos in os.walk(carpeta_principal): # Genera nombres de archivos en arbol de diretorios(anidados)
         for archivo in archivos: #CAMBIAR
-            # Asegura que el archivo tenga la extensión .txt EXPLICAR
+            # Asegura que el archivo tenga la extensión .txt 
             if archivo.endswith('.txt'): #EXPLICAR
-                listaArchivos.append(os.path.join(raiz, archivo)) #EXPLICAR
+                listaArchivos.append(os.path.join(raiz, archivo)) # Asignar nombres de ruta
+
 
     # Selecciona 3 archivos aleatorios de la lista
     archivos_seleccionados = random.sample(listaArchivos, 3) #EXPLICAR
